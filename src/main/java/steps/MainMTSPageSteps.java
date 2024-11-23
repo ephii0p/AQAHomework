@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.MainMTSPage;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
@@ -26,6 +27,7 @@ public class MainMTSPageSteps {
 
     public void clickButtonArrow() {
         driver.findElement(mainMTSPage.getButtonArrow()).click();
+
     }
 
     public void clickSelect() {
@@ -121,6 +123,7 @@ public class MainMTSPageSteps {
     }
 
     public void selectDebt() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(mainMTSPage.getSelectDebt()));
         driver.findElement(mainMTSPage.getSelectDebt()).click();
     }
 
@@ -141,7 +144,8 @@ public class MainMTSPageSteps {
         WebElement arrearsEmail = driver.findElement(By.xpath("//*[@id='arrears-email']"));
         assertTrue(arrearsEmail.isDisplayed());
     }
-    public void checkPlaceholdersInstallmentPlan (){
+
+    public void checkPlaceholdersInstallmentPlan() {
         WebElement accountNumber = driver.findElement(By.xpath("//*[@id = 'score-instalment']"));
         assertTrue(accountNumber.isDisplayed());
         WebElement installmentSum = driver.findElement(By.xpath("//*[@id = 'instalment-sum']"));
@@ -149,7 +153,8 @@ public class MainMTSPageSteps {
         WebElement installmentEmail = driver.findElement(By.xpath("//*[@id = 'instalment-email']"));
         assertTrue(installmentEmail.isDisplayed());
     }
-    public void checkCommunicationServicesPlaceholder (){
+
+    public void checkCommunicationServicesPlaceholder() {
         WebElement connectionPhone = driver.findElement(By.xpath("//*[@id = 'connection-phone']"));
         assertTrue(connectionPhone.isDisplayed());
         WebElement connectionSum = driver.findElement(By.xpath("//*[@id = 'connection-sum']"));

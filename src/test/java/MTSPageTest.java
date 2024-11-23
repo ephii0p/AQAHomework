@@ -1,20 +1,19 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.MainMTSPageSteps;
+
 import java.time.Duration;
+
 import static steps.DriverInstance.getInstance;
 
 public class MTSPageTest {
 
-    private WebDriver driver;
+    private static WebDriver driver;
     private WebDriverWait wait;
 
     @BeforeEach
@@ -25,14 +24,14 @@ public class MTSPageTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         driver.get("https://www.mts.by/");
-        WebElement acceptCookie = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cookie-agree")));
-        if (acceptCookie != null && acceptCookie.isDisplayed()) {
-            acceptCookie.click();
+        boolean acceptCookie = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("cookie-agree"))).isDisplayed();
+        if (acceptCookie) {
+            driver.findElement(By.id("cookie-agree")).click();
         }
     }
 
-    @AfterEach
-    public void tearDown() {
+    @AfterAll
+    public static void  tearDown() {
         if (driver != null) {
             driver.quit();
         }
