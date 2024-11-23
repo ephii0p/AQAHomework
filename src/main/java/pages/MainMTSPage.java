@@ -14,7 +14,6 @@ public class MainMTSPage {
     private final By selectInstallmentPlan = By.xpath("//p[contains(text(), 'Рассрочка')]");
     private final By selectDebt = By.xpath("//p[contains(text(), 'Задолженность')]");
 
-
     public By getSelectInternet() {
         return selectInternet;
     }
